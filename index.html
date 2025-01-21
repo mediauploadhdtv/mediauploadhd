@@ -3,6 +3,91 @@
 <head>
 <title>mediaupload</title>
 <title>iconos de plataformas animadas</title>
+<title>series online</title>
+<title>Reproductor de Video Local</title>
+<style>
+ body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+		 #videoPlayer {
+            width: 100%;
+            max-height: 500px;
+        }
+		 #fileInput {
+            margin-bottom: 20px;
+        }
+		 #controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+		</style>
+ <style>
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #e50914;
+        }
+
+        .contenedor-series {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .serie-card {
+            background-color: #2d2d2d;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .serie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .serie-imagen {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .serie-info {
+            padding: 15px;
+        }
+
+        .serie-titulo {
+            margin: 0;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .ver-enlace {
+            display: inline-block;
+            background-color: #e50914;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .ver-enlace:hover {
+            background-color: #ff0a16;
+        }
+    </style>
+	</head>
  <style>
         .platform-icons {
             display: flex;
@@ -86,6 +171,55 @@
 <meta name="viewport" content="width=device-witdh, initial-scale=1"/>
 </head>
 <body>
+<h1>tu reproductor de video sin limite de archivo</h1>
+    
+    <input type="file" id="fileInput" accept="video/*" />
+    
+    <video id="videoPlayer" controls>
+        Tu navegador no soporta reproducción de video.
+    </video>
+
+    <div id="controls">
+        <button onclick="playPause()">Play/Pause</button>
+        <button onclick="stopVideo()">Stop</button>
+        <input type="range" id="seekBar" value="0">
+    </div>
+
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const fileInput = document.getElementById('fileInput');
+        const seekBar = document.getElementById('seekBar');
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const fileURL = URL.createObjectURL(file);
+            videoPlayer.src = fileURL;
+        });
+
+        videoPlayer.addEventListener('loadedmetadata', function() {
+            seekBar.max = videoPlayer.duration;
+        });
+
+        seekBar.addEventListener('change', function() {
+            videoPlayer.currentTime = seekBar.value;
+        });
+
+        videoPlayer.addEventListener('timeupdate', function() {
+            seekBar.value = videoPlayer.currentTime;
+        });
+
+        function playPause() {
+            if (videoPlayer.paused) 
+                videoPlayer.play();
+            else 
+                videoPlayer.pause();
+        }
+
+        function stopVideo() {
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+        }
+    </script>
 <div class="platform-icons">
         <div class="icon netflix"></div>
         <div class="icon amazon"></div>
@@ -163,6 +297,28 @@
 		<h2>gladiator2</h2>
 		<a href="https://powstream.info/6uosl1t45t48" target="_blank">ver pelicula</a>
 		</a>
-		
+		<h1>series populares</h1>
+		<div class="contenedor-series">
+		<!--serie1-->
+		<div class="serie-card">
+		<img src="https://images.weserv.nl/?url=https://container765-deploy-static.cdndelta.com/imagenes/series/13381_1734871814-Santuario.jpg" alt="Serie 1" class="serie-imagen">
+		 <div class="serie-info">
+		 <h2 class="serie-titulo">el santuario</h2>
+		 <a href="https://9c6b-don.mirror.pm/serie/113376/113377/Santuario-1-Temporada" class="ver-enlace" target="_blank">descargar por torrent</a>
+		   </div>
+		     <!-- Serie 2 -->
+        <div class="serie-card">
+		<img src="https://images.weserv.nl/?url=https://container765-deploy-static.cdndelta.com/imagenes/series/machosalfa_season3poster.jpg" alt="Serie 2" class="serie-imagen">
+		 <div class="serie-info">
+		 <h2 class="serie-titulo">machos alfa 3 temporada</h2>
+		   <a href="https://9c6b-don.mirror.pm/serie/113692/113693/Machos-alfa-3-Temporada" class="ver-enlace" target="_blank">descargar por torrent</a>
+		   </div>
+		      <!-- Serie 3 -->
+			  <div class="serie-card">
+			   <img src="https://hdfullcdn.cc/tthumb/172x265/show_32663cfb4a04b7f688a8563bacd9b473.jpg" alt="Serie 3" class="serie-imagen">
+			    <div class="serie-info">
+				     <h2 class="serie-titulo">valeria 3 temporada</h2>
+					   <a href="https://9c6b-don.mirror.pm/serie/102847/102857/Valeria-3-Temporada" class="ver-enlace" target="_blank">descarga por torrent</a>
+					     </div>
 </body>
 </html>
